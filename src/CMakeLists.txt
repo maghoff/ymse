@@ -1,5 +1,6 @@
 add_library(
 	ymse STATIC
+	bindable_keyboard_handler.cpp
 	core.cpp
 	game.cpp
 	gl_box_reshaper.cpp

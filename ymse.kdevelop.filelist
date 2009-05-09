@@ -2,6 +2,7 @@
 CMakeLists.txt
 src
 src/CMakeLists.txt
+src/bindable_keyboard_handler.cpp
 src/core.cpp
 src/game.cpp
 src/gl_box_reshaper.cpp
@@ -10,6 +11,7 @@ src/keyboard_handler.cpp
 src/reshaper.cpp
 src/vec.cpp
 ymse
+ymse/bindable_keyboard_handler.hpp
 ymse/core.hpp
 ymse/game.hpp
 ymse/gl_box_reshaper.hpp

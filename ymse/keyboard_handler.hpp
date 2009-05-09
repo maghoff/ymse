@@ -9,7 +9,7 @@ class keyboard_handler : public boost::noncopyable {
 public:
 	virtual ~keyboard_handler();
 
-	virtual void key_event(int, bool) = 0;
+	virtual void key_event(int, bool) const = 0;
 };
 
 }
