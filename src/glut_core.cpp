@@ -45,7 +45,7 @@ glut_core::~glut_core() {
 void glut_core::init(int argc, const char *argv[]) {
 	glutInit(&argc, (char**)argv);
 
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_ALPHA);
 
 	glutInitWindowSize(640, 480);
 	glutCreateWindow("Lul");
