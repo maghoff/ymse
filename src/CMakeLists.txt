@@ -4,6 +4,7 @@ add_library(
 	game.cpp
 	gl_box_reshaper.cpp
 	glut_core.cpp
+	keyboard_handler.cpp
 	reshaper.cpp
 	vec.cpp
 )
