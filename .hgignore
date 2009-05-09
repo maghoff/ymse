@@ -5,3 +5,6 @@ CMakeFiles/*
 src/libymse.a
 CMakeCache.txt
 Makefile
+Doxyfile
+ymse.kdevses
+ymse.kdevelop.pcs

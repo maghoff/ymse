@@ -1,0 +1,17 @@
+# KDevelop Custom Project File List
+CMakeLists.txt
+src
+src/CMakeLists.txt
+src/core.cpp
+src/game.cpp
+src/gl_box_reshaper.cpp
+src/glut_core.cpp
+src/reshaper.cpp
+src/vec.cpp
+ymse
+ymse/core.hpp
+ymse/game.hpp
+ymse/gl_box_reshaper.hpp
+ymse/glut_core.hpp
+ymse/reshaper.hpp
+ymse/vec.hpp
