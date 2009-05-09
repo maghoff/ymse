@@ -17,6 +17,8 @@ struct vec {
 	vec<dim, T>& operator -= (vec<dim, T>);
 
 	vec<dim, T>& operator *= (T);
+
+	T length() const;
 };
 
 extern template struct vec<2, float>;

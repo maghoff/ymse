@@ -1,3 +1,4 @@
+#include <cmath>
 #include "vec.hpp"
 
 namespace ymse {
@@ -25,6 +26,13 @@ vec<dim, T>& vec<dim, T>::operator -= (vec<dim, T> rhs) {
 template <int dim, typename T>
 vec<dim, T>& vec<dim, T>::operator *= (T rhs) {
 	for (int i=0; i<dim; ++i) v[i] *= rhs;
+}
+
+template <int dim, typename T>
+T vec<dim, T>::length() const {
+	T acc(0);
+	for (int i=0; i<dim; ++i) acc += v[i] * v[i];
+	return sqrt(acc);
 }
 
 
