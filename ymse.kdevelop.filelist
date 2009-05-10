@@ -8,6 +8,7 @@ src/game.cpp
 src/gl_box_reshaper.cpp
 src/glut_core.cpp
 src/keyboard_handler.cpp
+src/opposite_keys.cpp
 src/reshaper.cpp
 src/vec.cpp
 ymse
@@ -18,5 +19,6 @@ ymse/gl_box_reshaper.hpp
 ymse/glut_core.hpp
 ymse/keyboard_handler.hpp
 ymse/keycodes.hpp
+ymse/opposite_keys.hpp
 ymse/reshaper.hpp
 ymse/vec.hpp

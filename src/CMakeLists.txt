@@ -6,6 +6,7 @@ add_library(
 	gl_box_reshaper.cpp
 	glut_core.cpp
 	keyboard_handler.cpp
+	opposite_keys.cpp
 	reshaper.cpp
 	vec.cpp
 )
