@@ -38,7 +38,9 @@ void reshape(int width, int height) {
 }
 
 
-std::map<int, int> ascii_map;
+std::map<int, int> ascii_map = boost::assign::map_list_of<int, int>
+	(' ', ymse::KEY_SPACE)
+;
 
 std::map<int, int> special_map = boost::assign::map_list_of<int, int>
 	(GLUT_KEY_UP, ymse::KEY_UP)

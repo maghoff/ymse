@@ -8,6 +8,8 @@ const int KEY_DOWN = 'P';
 const int KEY_LEFT = 'K';
 const int KEY_RIGHT = 'M';
 
+const int KEY_SPACE = ' ';
+
 }
 
 #endif
