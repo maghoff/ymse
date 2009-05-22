@@ -1,3 +1,5 @@
+Find_Package(SDL REQUIRED)
+
 add_library(
 	ymse STATIC
 	bindable_keyboard_handler.cpp
@@ -8,11 +10,17 @@ add_library(
 	keyboard_handler.cpp
 	opposite_keys.cpp
 	reshaper.cpp
+	sdl_core.cpp
 	vec.cpp
+)
+
+include_directories(
+	${SDL_INCLUDE_DIR}
 )
 
 target_link_libraries(
 	ymse
 	GL
 	glut
+	${SDL_LIBRARY}
 )

@@ -10,6 +10,7 @@ src/glut_core.cpp
 src/keyboard_handler.cpp
 src/opposite_keys.cpp
 src/reshaper.cpp
+src/sdl_core.cpp
 src/vec.cpp
 ymse
 ymse/bindable_keyboard_handler.hpp
@@ -21,4 +22,5 @@ ymse/keyboard_handler.hpp
 ymse/keycodes.hpp
 ymse/opposite_keys.hpp
 ymse/reshaper.hpp
+ymse/sdl_core.hpp
 ymse/vec.hpp
