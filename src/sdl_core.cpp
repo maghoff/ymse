@@ -1,7 +1,11 @@
 #include <cassert>
+#include <map>
 #include <stdexcept>
+#include <boost/assign.hpp>
 #include <SDL.h>
 #include "game.hpp"
+#include "keyboard_handler.hpp"
+#include "keycodes.hpp"
 #include "reshaper.hpp"
 #include "sdl_core.hpp"
 
@@ -45,6 +49,8 @@ void sdl_core::init(int argc, const char *argv[]) {
 	CHECK(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != -1);
 	inited = true;
 
+	SDL_EnableKeyRepeat(0, 0); //< Just disable it.
+
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
@@ -67,6 +73,14 @@ void sdl_core::set_keyboard_handler(keyboard_handler* keyboard_handler_p_) {
 	keyboard_handler_p = keyboard_handler_p_;
 }
 
+std::map<int, int> key_map = boost::assign::map_list_of<int, int>
+	(SDLK_UP, ymse::KEY_UP)
+	(SDLK_DOWN, ymse::KEY_DOWN)
+	(SDLK_LEFT, ymse::KEY_LEFT)
+	(SDLK_RIGHT, ymse::KEY_RIGHT)
+	(SDLK_SPACE, ymse::KEY_SPACE)
+;
+
 int sdl_core::run() {
 	assert(inited);
 	if (!inited) {
@@ -77,8 +91,7 @@ int sdl_core::run() {
 
 	assert(game_p);
 
-	assert(reshaper_p);
-	reshaper_p->reshape(640, 480);
+	if (reshaper_p) reshaper_p->reshape(640, 480);
 
 	SDL_Event event;
 	unsigned ticks = SDL_GetTicks();
@@ -86,7 +99,7 @@ int sdl_core::run() {
 		while (ticks < SDL_GetTicks()) {
 			++ticks;
 			if (ticks % 10 == 0) game_p->tick();
-			if (ticks % (1000/50) == 0) {
+			if (ticks % (1000/100) == 0) {
 				game_p->render();
 				SDL_GL_SwapBuffers();
 			}
@@ -103,10 +116,20 @@ int sdl_core::run() {
 			running = false;
 			break;
 		case SDL_VIDEORESIZE:
-			assert(reshaper_p);
 			set_video_mode(event.resize.w, event.resize.h);
-			reshaper_p->reshape(event.resize.w, event.resize.h);
+			if (reshaper_p) reshaper_p->reshape(event.resize.w, event.resize.h);
 			break;
+
+		case SDL_KEYDOWN:
+		case SDL_KEYUP:
+			if (keyboard_handler_p) {
+				std::map<int, int>::const_iterator i = key_map.find(event.key.keysym.sym);
+				if (i == key_map.end()) break;
+				keyboard_handler_p->key_event(
+					i->second,
+					event.key.state == SDL_PRESSED
+				);
+			}
 		}
 	}
 }
