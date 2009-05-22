@@ -4,6 +4,7 @@ add_library(
 	ymse STATIC
 	bindable_keyboard_handler.cpp
 	core.cpp
+	core_factory.cpp
 	game.cpp
 	gl_box_reshaper.cpp
 	glut_core.cpp

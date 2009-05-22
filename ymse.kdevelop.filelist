@@ -4,6 +4,7 @@ src
 src/CMakeLists.txt
 src/bindable_keyboard_handler.cpp
 src/core.cpp
+src/core_factory.cpp
 src/game.cpp
 src/gl_box_reshaper.cpp
 src/glut_core.cpp
@@ -15,6 +16,7 @@ src/vec.cpp
 ymse
 ymse/bindable_keyboard_handler.hpp
 ymse/core.hpp
+ymse/core_factory.hpp
 ymse/game.hpp
 ymse/gl_box_reshaper.hpp
 ymse/glut_core.hpp
