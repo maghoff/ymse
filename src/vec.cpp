@@ -37,5 +37,6 @@ T vec<dim, T>::length() const {
 
 
 template struct vec<2, float>;
+template struct vec<3, float>;
 
 }

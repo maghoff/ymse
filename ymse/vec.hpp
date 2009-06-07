@@ -22,8 +22,10 @@ struct vec {
 };
 
 extern template struct vec<2, float>;
+extern template struct vec<3, float>;
 
 typedef vec<2, float> vec2f;
+typedef vec<3, float> vec3f;
 
 }
 
