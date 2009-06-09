@@ -10,6 +10,7 @@ add_library(
 	glut_core.cpp
 	keyboard_handler.cpp
 	matrix.cpp
+	matrix3d.cpp
 	opposite_keys.cpp
 	reshaper.cpp
 	sdl_core.cpp

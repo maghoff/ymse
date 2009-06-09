@@ -28,7 +28,6 @@ sq_matrix<Size, T> operator * (const sq_matrix<Size, T>&, const sq_matrix<Size, 
 
 extern template struct sq_matrix<3, float>;
 
-typedef sq_matrix<3, float> sq_matrix3f;
 typedef sq_matrix<3, float> matrix33f;
 
 }
