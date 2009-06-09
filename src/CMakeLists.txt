@@ -9,6 +9,7 @@ add_library(
 	gl_box_reshaper.cpp
 	glut_core.cpp
 	keyboard_handler.cpp
+	matrix.cpp
 	opposite_keys.cpp
 	reshaper.cpp
 	sdl_core.cpp
