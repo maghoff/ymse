@@ -1,3 +1,4 @@
+#include <cassert>
 #include <cmath>
 #include "vec.hpp"
 
@@ -9,8 +10,17 @@ vec<dim, T>::vec() {
 
 template <int dim, typename T>
 vec<dim, T>::vec(T x, T y) {
+	assert(dim == 2);
 	v[0] = x;
 	v[1] = y;
+}
+
+template <int dim, typename T>
+vec<dim, T>::vec(T x, T y, T z) {
+	assert(dim == 3);
+	v[0] = x;
+	v[1] = y;
+	v[2] = z;
 }
 
 template <int dim, typename T>

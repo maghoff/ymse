@@ -12,6 +12,7 @@ struct vec {
 
 	vec();
 	vec(T x, T y);
+	vec(T x, T y, T z);
 
 	vec<dim, T>& operator += (vec<dim, T>);
 	vec<dim, T>& operator -= (vec<dim, T>);
