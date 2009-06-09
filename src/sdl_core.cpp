@@ -94,14 +94,17 @@ int sdl_core::run() {
 	if (reshaper_p) reshaper_p->reshape(640, 480);
 
 	SDL_Event event;
+	const unsigned frame_interval = 1000/50;
 	unsigned ticks = SDL_GetTicks();
+	unsigned next_frame = ticks + frame_interval;
 	while (running) {
 		while (ticks < SDL_GetTicks()) {
 			++ticks;
 			if (ticks % 10 == 0) game_p->tick();
-			if (ticks % (1000/100) == 0) {
+			if (ticks >= next_frame) {
 				game_p->render();
 				SDL_GL_SwapBuffers();
+				next_frame = ticks + frame_interval;
 			}
 		}
 
