@@ -8,6 +8,7 @@ struct vec {
 	typedef T value_type;
 
 	T v[dim];
+	T operator[] (int n) const { return v[n]; }
 	T& operator[] (int n) { return v[n]; }
 
 	vec();

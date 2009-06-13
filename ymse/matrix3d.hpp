@@ -8,6 +8,11 @@ struct sq_matrix;
 
 typedef sq_matrix<3, float> matrix33f;
 
+template <int dim, typename T>
+struct vec;
+
+typedef vec<3, float> vec3f;
+
 
 namespace matrix3d {
 
@@ -16,6 +21,8 @@ matrix33f identity();
 matrix33f rotate_x(double);
 matrix33f rotate_y(double);
 matrix33f rotate_z(double);
+
+vec3f operator * (const matrix33f& lhs, const vec3f& rhs);
 
 }
 
