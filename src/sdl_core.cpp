@@ -79,6 +79,15 @@ std::map<int, int> key_map = boost::assign::map_list_of<int, int>
 	(SDLK_LEFT, ymse::KEY_LEFT)
 	(SDLK_RIGHT, ymse::KEY_RIGHT)
 	(SDLK_SPACE, ymse::KEY_SPACE)
+	(SDLK_q, ymse::KEY_Q)
+	(SDLK_w, ymse::KEY_W)
+	(SDLK_e, ymse::KEY_E)
+	(SDLK_a, ymse::KEY_A)
+	(SDLK_s, ymse::KEY_S)
+	(SDLK_d, ymse::KEY_D)
+	(SDLK_z, ymse::KEY_Z)
+	(SDLK_x, ymse::KEY_X)
+	(SDLK_c, ymse::KEY_C)
 ;
 
 int sdl_core::run() {
