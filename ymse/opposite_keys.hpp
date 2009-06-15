@@ -8,6 +8,8 @@ namespace ymse {
 class bindable_keyboard_handler;
 
 class opposite_keys : public boost::noncopyable {
+	bindable_keyboard_handler& kbd;
+	int neg_key, pos_key;
 	bool neg, pos;
 
 public:

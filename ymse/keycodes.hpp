@@ -20,6 +20,17 @@ const int KEY_Z = 'z';
 const int KEY_X = 'x';
 const int KEY_C = 'c';
 
+const int KEY_0 = '0';
+const int KEY_1 = '1';
+const int KEY_2 = '2';
+const int KEY_3 = '3';
+const int KEY_4 = '4';
+const int KEY_5 = '5';
+const int KEY_6 = '6';
+const int KEY_7 = '7';
+const int KEY_8 = '8';
+const int KEY_9 = '9';
+
 const int KEY_LALT = 0x0100;
 const int KEY_RALT = 0x0100;
 
