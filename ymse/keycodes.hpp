@@ -20,6 +20,9 @@ const int KEY_Z = 'z';
 const int KEY_X = 'x';
 const int KEY_C = 'c';
 
+const int KEY_LALT = 0x0100;
+const int KEY_RALT = 0x0100;
+
 }
 
 #endif
