@@ -8,6 +8,7 @@ add_library(
 	game.cpp
 	gl_box_reshaper.cpp
 	glut_core.cpp
+	key.cpp
 	keyboard_handler.cpp
 	matrix.cpp
 	matrix3d.cpp
