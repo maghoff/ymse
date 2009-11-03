@@ -26,16 +26,19 @@ vec<dim, T>::vec(T x, T y, T z) {
 template <int dim, typename T>
 vec<dim, T>& vec<dim, T>::operator += (vec<dim, T> rhs) {
 	for (int i=0; i<dim; ++i) v[i] += rhs[i];
+	return *this;
 }
 
 template <int dim, typename T>
 vec<dim, T>& vec<dim, T>::operator -= (vec<dim, T> rhs) {
 	for (int i=0; i<dim; ++i) v[i] -= rhs[i];
+	return *this;
 }
 
 template <int dim, typename T>
 vec<dim, T>& vec<dim, T>::operator *= (T rhs) {
 	for (int i=0; i<dim; ++i) v[i] *= rhs;
+	return *this;
 }
 
 template <int dim, typename T>
