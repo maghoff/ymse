@@ -9,3 +9,6 @@ cmake .
 
 export YMSE_PATH=`pwd`
 echo "export YMSE_PATH=$YMSE_PATH" >> ~/.profile
+
+echo
+echo "export YMSE_PATH=$YMSE_PATH"
