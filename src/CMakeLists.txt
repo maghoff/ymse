@@ -28,3 +28,12 @@ target_link_libraries(
 	glut
 	${SDL_LIBRARY}
 )
+
+set_target_properties(
+	ymse
+	PROPERTIES
+	COMPILE_FLAGS "-ggdb -ffast-math -pipe -fvisibility-inlines-hidden -Wall"
+	COMPILE_DEFINITIONS "DEBUG;EBUG"
+#	COMPILE_FLAGS "-O3 -ffast-math -pipe -fvisibility-inlines-hidden"
+#	COMPILE_DEFINITIONS "NDEBUG;GL_GLEXT_PROTOTYPES"
+)
