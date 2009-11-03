@@ -11,6 +11,8 @@
 
 namespace ymse {
 
+const int YSDL_RENDERFRAME = SDL_USEREVENT;
+
 class sdl_error : public std::runtime_error {
 public:
 	sdl_error(const std::string& w) : std::runtime_error(w) { }
@@ -102,10 +104,49 @@ std::map<int, int> key_map = boost::assign::map_list_of<int, int>
 	(SDLK_RALT, ymse::KEY_RALT)
 ;
 
+class sdl_timer {
+	SDL_TimerID id;
+
+	static Uint32 callback_helper(Uint32 interval, void *th) {
+		return reinterpret_cast<sdl_timer*>(th)->callback(interval);
+	}
+
+public:
+	sdl_timer(int interval) {
+		id = SDL_AddTimer(interval, &sdl_timer::callback_helper, this);
+		CHECK(id);
+	}
+	virtual ~sdl_timer() {
+		CHECK(SDL_RemoveTimer(id));
+	}
+
+	virtual Uint32 callback(Uint32 interval) = 0;
+};
+
+class sdl_frame_timer : public sdl_timer {
+public:
+	sdl_frame_timer(int interval) : sdl_timer(interval) { }
+
+	Uint32 callback(Uint32 interval) {
+		SDL_Event event;
+		SDL_UserEvent userevent;
+
+		userevent.type = YSDL_RENDERFRAME;
+		userevent.code = 0;
+		userevent.data1 = NULL;
+		userevent.data2 = NULL;
+		event.type = YSDL_RENDERFRAME;
+		event.user = userevent;
+		SDL_PushEvent(&event);
+
+		return interval;
+	}
+};
+
 int sdl_core::run() {
 	assert(inited);
 	if (!inited) {
-		throw std::runtime_error(
+		throw std::logic_error(
 			"sdl_core::init must be run before std_core::run"
 		);
 	}
@@ -114,31 +155,25 @@ int sdl_core::run() {
 
 	if (reshaper_p) reshaper_p->reshape(640, 480);
 
-	SDL_Event event;
 	const unsigned frame_interval = 1000/50;
+	sdl_frame_timer sft(frame_interval);
+
+	SDL_Event event;
 	unsigned ticks = SDL_GetTicks();
-	unsigned next_frame = ticks + frame_interval;
+	//unsigned next_frame = ticks + frame_interval;
 	while (running) {
+		CHECK(SDL_WaitEvent(&event));
+
 		while (ticks < SDL_GetTicks()) {
 			++ticks;
 			if (ticks % 10 == 0) game_p->tick();
-			if (ticks >= next_frame) {
-				game_p->render();
-				SDL_GL_SwapBuffers();
-				next_frame = ticks + frame_interval;
-			}
-		}
-
-		int got_event = SDL_PollEvent(&event);
-		if (!got_event) {
-			sleep(0);
-			continue;
 		}
 
 		switch (event.type) {
 		case SDL_QUIT:
 			running = false;
 			break;
+
 		case SDL_VIDEORESIZE:
 			set_video_mode(event.resize.w, event.resize.h);
 			if (reshaper_p) reshaper_p->reshape(event.resize.w, event.resize.h);
@@ -154,8 +189,16 @@ int sdl_core::run() {
 					event.key.state == SDL_PRESSED
 				);
 			}
+			break;
+
+		case YSDL_RENDERFRAME:
+			game_p->render();
+			SDL_GL_SwapBuffers();
+			break;
 		}
 	}
+
+	return 0;
 }
 
 }
