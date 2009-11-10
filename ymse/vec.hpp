@@ -21,6 +21,7 @@ struct vec {
 	vec<dim, T>& operator *= (T);
 
 	T length() const;
+	T square_length() const;
 };
 
 extern template struct vec<2, float>;

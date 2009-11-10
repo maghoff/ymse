@@ -43,9 +43,14 @@ vec<dim, T>& vec<dim, T>::operator *= (T rhs) {
 
 template <int dim, typename T>
 T vec<dim, T>::length() const {
+	return sqrt(square_length());
+}
+
+template <int dim, typename T>
+T vec<dim, T>::square_length() const {
 	T acc(0);
 	for (int i=0; i<dim; ++i) acc += v[i] * v[i];
-	return sqrt(acc);
+	return acc;
 }
 
 
