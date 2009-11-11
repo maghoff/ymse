@@ -13,6 +13,7 @@ add_library(
 	matrix.cpp
 	matrix3d.cpp
 	opposite_keys.cpp
+	pixels_per_unit_listener.cpp
 	reshaper.cpp
 	sdl_core.cpp
 	vec.cpp
