@@ -13,9 +13,11 @@ add_library(
 	matrix.cpp
 	matrix3d.cpp
 	opposite_keys.cpp
+	opposite_keys_listener.cpp
 	pixels_per_unit_listener.cpp
 	reshaper.cpp
 	sdl_core.cpp
+	signaling_opposite_keys.cpp
 	vec.cpp
 )
 
@@ -25,9 +27,9 @@ include_directories(
 
 target_link_libraries(
 	ymse
-	GL
-	glut
 	${SDL_LIBRARY}
+	GL
+#	glut
 )
 
 set_target_properties(

@@ -5,12 +5,6 @@
 
 namespace ymse {
 
-namespace {
-
-void set(bool* s, bool pos) { *s = pos; }
-
-}
-
 opposite_keys::opposite_keys(
 	bindable_keyboard_handler& kbd_,
 	int neg_key_, int pos_key_
@@ -19,13 +13,17 @@ opposite_keys::opposite_keys(
 	neg_key(neg_key_), pos_key(pos_key_),
 	neg(false), pos(false)
 {
-	kbd.bind(neg_key, boost::bind(&set, &neg, _1));
-	kbd.bind(pos_key, boost::bind(&set, &pos, _1));
+	kbd.bind(neg_key, boost::bind(&opposite_keys::set, this, &neg, _1));
+	kbd.bind(pos_key, boost::bind(&opposite_keys::set, this, &pos, _1));
 }
 
 opposite_keys::~opposite_keys() {
 	kbd.unbind(neg_key);
 	kbd.unbind(pos_key);
+}
+
+void opposite_keys::set(bool* key, bool status) {
+	*key = status;
 }
 
 int opposite_keys::val() const {
