@@ -10,6 +10,7 @@ add_library(
 	glut_core.cpp
 	key.cpp
 	keyboard_handler.cpp
+	load_image.cpp
 	matrix.cpp
 	matrix3d.cpp
 	opposite_keys.cpp
