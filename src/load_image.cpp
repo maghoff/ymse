@@ -4,6 +4,8 @@
 #include <string>
 //#include "load_image.hpp"
 
+namespace ymse {
+
 GLuint load_texture(const std::string& file) {
 	SDL_Surface* surface = IMG_Load(file.c_str());
 	GLuint texture;
@@ -20,4 +22,6 @@ GLuint load_texture(const std::string& file) {
 
 	SDL_FreeSurface(surface);
 	return texture;
+}
+
 }
