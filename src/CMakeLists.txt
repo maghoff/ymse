@@ -19,6 +19,7 @@ add_library(
 	opposite_keys.cpp
 	opposite_keys_listener.cpp
 	pixels_per_unit_listener.cpp
+	rect.cpp
 	reshaper.cpp
 	sdl_core.cpp
 	signaling_opposite_keys.cpp
