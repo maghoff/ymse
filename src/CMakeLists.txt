@@ -2,9 +2,12 @@ Find_Package(SDL REQUIRED)
 
 add_library(
 	ymse STATIC
+	gl/program.cpp
+	gl/shader.cpp
 	bindable_keyboard_handler.cpp
 	core.cpp
 	core_factory.cpp
+	fileutil.cpp
 	game.cpp
 	gl_box_reshaper.cpp
 	glut_core.cpp
@@ -37,7 +40,7 @@ set_target_properties(
 	ymse
 	PROPERTIES
 	COMPILE_FLAGS "-ggdb -ffast-math -pipe -fvisibility-inlines-hidden -Wall"
-	COMPILE_DEFINITIONS "DEBUG;EBUG"
+	COMPILE_DEFINITIONS "DEBUG;EBUG;GL_GLEXT_PROTOTYPES"
 #	COMPILE_FLAGS "-O3 -ffast-math -pipe -fvisibility-inlines-hidden"
 #	COMPILE_DEFINITIONS "NDEBUG;GL_GLEXT_PROTOTYPES"
 )
