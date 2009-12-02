@@ -4,6 +4,7 @@ add_library(
 	ymse STATIC
 	gl/program.cpp
 	gl/shader.cpp
+	sdl/surface.cpp
 	bindable_keyboard_handler.cpp
 	core.cpp
 	core_factory.cpp
