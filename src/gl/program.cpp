@@ -25,6 +25,11 @@ void program::link() {
 	glLinkProgram(id);
 }
 
+template<>
+void program::set_uniform(const std::string& name, int i) {
+	glUniform1i(glGetUniformLocation(id, name.c_str()), i);
+}
+
 unsigned program::get_id() {
 	return id;
 }
