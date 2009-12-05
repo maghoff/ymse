@@ -1,9 +1,11 @@
 Find_Package(SDL REQUIRED)
+Find_Package(SDL_image REQUIRED)
 
 add_library(
 	ymse STATIC
 	gl/program.cpp
 	gl/shader.cpp
+	gl/texture.cpp
 	sdl/img_load.cpp
 	sdl/surface.cpp
 	bindable_keyboard_handler.cpp
@@ -34,6 +36,7 @@ include_directories(
 
 target_link_libraries(
 	ymse
+	${SDLIMAGE_LIBRARY}
 	${SDL_LIBRARY}
 	GL
 #	glut

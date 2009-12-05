@@ -4,6 +4,11 @@
 struct SDL_Surface;
 
 namespace ymse {
+
+namespace gl {
+	class texture;
+}
+
 namespace sdl {
 
 class surface {
@@ -19,6 +24,8 @@ public:
 
 	SDL_Surface* operator->() { return s; }
 	SDL_Surface* get() { return s; }
+
+	void copy_to(gl::texture&) const;
 };
 
 }}
