@@ -17,7 +17,7 @@ public:
 
 	surface& operator = (const surface&);
 
-	SDL_Surface& operator->() { return *s; }
+	SDL_Surface* operator->() { return s; }
 	SDL_Surface* get() { return s; }
 };
 
