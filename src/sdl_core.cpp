@@ -93,6 +93,7 @@ std::map<int, int> key_map = boost::assign::map_list_of<int, int>
 	(SDLK_a, ymse::KEY_A)
 	(SDLK_s, ymse::KEY_S)
 	(SDLK_d, ymse::KEY_D)
+	(SDLK_f, ymse::KEY_F)
 	(SDLK_z, ymse::KEY_Z)
 	(SDLK_x, ymse::KEY_X)
 	(SDLK_c, ymse::KEY_C)
