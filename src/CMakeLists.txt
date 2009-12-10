@@ -13,6 +13,7 @@ add_library(
 	core_factory.cpp
 	fileutil.cpp
 	game.cpp
+	geometry_intersection.cpp
 	gl_box_reshaper.cpp
 	glut_core.cpp
 	key.cpp
