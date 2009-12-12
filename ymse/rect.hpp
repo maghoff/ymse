@@ -22,6 +22,13 @@ struct rect {
 extern template struct rect<float>;
 typedef rect<float> rectf;
 
+
+template <typename T>
+rect<T> bounding_box(rect<T>, rect<T>);
+
+template <>
+rectf bounding_box(rectf, rectf);
+
 }
 
 #endif // YMSE_RECT_HPP
