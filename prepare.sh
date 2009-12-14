@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install build-essential cmake libsdl-dev libglut-dev libboost-dev
+sudo apt-get install build-essential cmake libsdl-dev libsdl-image1.2-dev libglut-dev libboost-dev
 
 # Not sure what to do with OpenGL
 #sudo apt-get install libgl-dev
