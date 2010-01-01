@@ -26,6 +26,12 @@ typedef rect<float> rectf;
 template <typename T>
 rect<T> bounding_box(rect<T>, rect<T>);
 
+template <int Dim, typename T>
+class vec;
+
+template <typename T>
+rect<T> bounding_box(rect<T>, vec<2, T>);
+
 }
 
 #endif // YMSE_RECT_HPP
