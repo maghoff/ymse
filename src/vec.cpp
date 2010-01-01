@@ -53,10 +53,33 @@ T vec<Dim, T>::square_length() const {
 	return acc;
 }
 
+template <int Dim, typename T>
+vec<Dim, T> operator + (const vec<Dim, T>& lhs, const vec<Dim, T>& rhs) {
+	vec<Dim, T> r(lhs);
+	r += rhs;
+	return r;
+}
 
-template struct vec<2, float>;
-template struct vec<3, float>;
+template <int Dim, typename T>
+vec<Dim, T> operator * (const vec<Dim, T>& lhs, T rhs) {
+	vec<Dim, T> r(lhs);
+	r *= rhs;
+	return r;
+}
 
-template struct vec<2, int>;
+template <int Dim, typename T>
+vec<Dim, T> operator * (T lhs, const vec<Dim, T>& rhs) {
+	return rhs * lhs;
+}
+
+#define INSTANTIATE(name, dim, t) \
+	template struct vec<dim, t>; \
+	template name operator + (const name&, const name&); \
+	template name operator * (const name&, t); \
+	template name operator * (t, const name&);
+
+INSTANTIATE(vec2f, 2, float);
+INSTANTIATE(vec3f, 3, float);
+INSTANTIATE(vec2i, 2, int);
 
 }

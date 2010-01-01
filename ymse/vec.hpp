@@ -24,6 +24,15 @@ struct vec {
 	T square_length() const;
 };
 
+template <int Dim, typename T>
+ymse::vec<Dim, T> operator + (const ymse::vec<Dim, T>&, const ymse::vec<Dim, T>&);
+
+template <int Dim, typename T>
+ymse::vec<Dim, T> operator * (const ymse::vec<Dim, T>&, T);
+
+template <int Dim, typename T>
+ymse::vec<Dim, T> operator * (T, const ymse::vec<Dim, T>&);
+
 extern template struct vec<2, float>;
 extern template struct vec<3, float>;
 
