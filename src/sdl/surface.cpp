@@ -31,6 +31,7 @@ void surface::copy_to(gl::texture& t) const {
 	glBindTexture(GL_TEXTURE_2D, t.get_id());
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 	gluBuild2DMipmaps(GL_TEXTURE_2D, bpp, s->w, s->h, gl_format, GL_UNSIGNED_BYTE, s->pixels);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 }
 
 }}
