@@ -132,9 +132,14 @@ public:
 
 class sdl_frame_timer : public sdl_timer {
 public:
-	sdl_frame_timer(int interval) : sdl_timer(interval) { }
+	volatile bool do_add;
+
+	sdl_frame_timer(int interval) : sdl_timer(interval), do_add(true) { }
 
 	Uint32 callback(Uint32 interval) {
+		if (!do_add) return interval;
+		do_add = false;
+
 		SDL_Event event;
 		SDL_UserEvent userevent;
 
@@ -200,6 +205,7 @@ int sdl_core::run() {
 			break;
 
 		case YSDL_RENDERFRAME:
+			sft.do_add = true;
 			game_p->render();
 			SDL_GL_SwapBuffers();
 			break;
