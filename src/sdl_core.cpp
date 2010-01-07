@@ -109,6 +109,18 @@ std::map<int, int> key_map = boost::assign::map_list_of<int, int>
 	(SDLK_9, ymse::KEY_9)
 	(SDLK_LALT, ymse::KEY_LALT)
 	(SDLK_RALT, ymse::KEY_RALT)
+	(SDLK_F1, ymse::KEY_F1)
+	(SDLK_F2, ymse::KEY_F2)
+	(SDLK_F3, ymse::KEY_F3)
+	(SDLK_F4, ymse::KEY_F4)
+	(SDLK_F5, ymse::KEY_F5)
+	(SDLK_F6, ymse::KEY_F6)
+	(SDLK_F7, ymse::KEY_F7)
+	(SDLK_F8, ymse::KEY_F8)
+	(SDLK_F9, ymse::KEY_F9)
+	(SDLK_F10, ymse::KEY_F10)
+	(SDLK_F11, ymse::KEY_F11)
+	(SDLK_F12, ymse::KEY_F12)
 ;
 
 class sdl_timer {

@@ -33,7 +33,20 @@ const int KEY_8 = '8';
 const int KEY_9 = '9';
 
 const int KEY_LALT = 0x0100;
-const int KEY_RALT = 0x0100;
+const int KEY_RALT = 0x0101;
+
+const int KEY_F1 = 0x0111;
+const int KEY_F2 = 0x0112;
+const int KEY_F3 = 0x0113;
+const int KEY_F4 = 0x0114;
+const int KEY_F5 = 0x0115;
+const int KEY_F6 = 0x0116;
+const int KEY_F7 = 0x0117;
+const int KEY_F8 = 0x0118;
+const int KEY_F9 = 0x0119;
+const int KEY_F10 = 0x011A;
+const int KEY_F11 = 0x011B;
+const int KEY_F12 = 0x011C;
 
 }
 
