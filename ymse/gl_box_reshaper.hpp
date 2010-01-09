@@ -14,7 +14,9 @@ class gl_box_reshaper : public reshaper {
 
 	pixels_per_unit_listener* ppu_listener;
 
+	void update_listener();
 	void set_projection_matrix();
+
 public:
 	gl_box_reshaper();
 	~gl_box_reshaper();

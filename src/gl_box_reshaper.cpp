@@ -14,6 +14,16 @@ gl_box_reshaper::gl_box_reshaper() :
 gl_box_reshaper::~gl_box_reshaper() {
 }
 
+void gl_box_reshaper::update_listener() {
+	if (ppu_listener) {
+		double w_ppu = width / (x2 - x1);
+		double h_ppu = height / (y2 - y1);
+		double ppu = std::min(w_ppu, h_ppu);
+
+		ppu_listener->set_pixels_per_unit(ppu);
+	}
+}
+
 void gl_box_reshaper::set_projection_matrix() {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -39,13 +49,7 @@ void gl_box_reshaper::set_projection_matrix() {
 
 	glTranslated(-(x1 + x2) / 2.0, -(y1 + y2) / 2.0, 0.0);
 
-	if (ppu_listener) {
-		double w_ppu = width / (x2 - x1);
-		double h_ppu = height / (y2 - y1);
-		double ppu = std::min(w_ppu, h_ppu);
-
-		ppu_listener->set_pixels_per_unit(ppu);
-	}
+	update_listener();
 }
 
 void gl_box_reshaper::reshape(int width_, int height_) {
@@ -73,6 +77,7 @@ void gl_box_reshaper::set_box(
 
 void gl_box_reshaper::set_pixels_per_unit_listener(pixels_per_unit_listener* ppu_listener_) {
 	ppu_listener = ppu_listener_;
+	update_listener();
 }
 
 }
