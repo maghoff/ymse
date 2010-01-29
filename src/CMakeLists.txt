@@ -1,5 +1,6 @@
 Find_Package(SDL REQUIRED)
 Find_Package(SDL_image REQUIRED)
+find_package(Boost REQUIRED)
 
 add_library(
 	ymse STATIC
@@ -33,6 +34,13 @@ add_library(
 
 include_directories(
 	${SDL_INCLUDE_DIR}
+	${SDLIMAGE_INCLUDE_DIR}
+	${SDL_image_INCLUDE_DIR}
+	${Boost_INCLUDE_DIRS}
+)
+
+link_directories(
+	${Boost_LIBRARY_DIRS}
 )
 
 target_link_libraries(

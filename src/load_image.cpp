@@ -1,5 +1,5 @@
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include "gl.h"
+#include "glu.h"
 #include <string>
 #include <SDL.h>
 #include "sdl/img_load.hpp"

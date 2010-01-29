@@ -1,7 +1,7 @@
 #include <cassert>
 #include <map>
-#include <GL/gl.h>
-#include <GL/glut.h>
+#include "gl.h"
+#include "glut.h"
 #include <boost/assign.hpp>
 #include "game.hpp"
 #include "glut_core.hpp"
