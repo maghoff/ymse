@@ -48,6 +48,7 @@ target_link_libraries(
 	${SDLIMAGE_LIBRARY}
 	${SDL_LIBRARY}
 	GL
+	GLU
 #	glut
 )
 
