@@ -6,3 +6,4 @@ tags
 debug
 release
 
+*.user
