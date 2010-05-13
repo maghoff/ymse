@@ -16,7 +16,7 @@ add_library(
 	game.cpp
 	geometry_intersection.cpp
 	gl_box_reshaper.cpp
-	glut_core.cpp
+#	glut_core.cpp
 	key.cpp
 	keyboard_handler.cpp
 	load_image.cpp

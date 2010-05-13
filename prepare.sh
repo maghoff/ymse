@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PACKAGES="build-essential cmake libsdl-dev libsdl-image1.2-dev libglut-dev libboost-dev"
+PACKAGES="build-essential cmake libsdl-dev libsdl-image1.2-dev libboost-dev"
 CMAKE_PARAMS="-C../GCCSetup.cmake"
 BUILD_TYPES="debug release"
 
