@@ -14,11 +14,11 @@ sq_matrix<Size, T>::sq_matrix(T initial) {
 template <int Size, typename T>
 sq_matrix<Size, T> operator * (const sq_matrix<Size, T>& lhs, const sq_matrix<Size, T>& rhs) {
 	sq_matrix<Size, T> res;
-	for (int row = 0; row <= Size; ++row) {
-		for (int col = 0; col <= Size; ++col) {
+	for (int row = 0; row < Size; ++row) {
+		for (int col = 0; col < Size; ++col) {
 			T& d = res[row][col];
 			d = 0;
-			for (int i = 0; i <= Size; ++i) {
+			for (int i = 0; i < Size; ++i) {
 				d += lhs[row][i] * rhs[i][col];
 			}
 		}
