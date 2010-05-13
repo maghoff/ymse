@@ -55,8 +55,6 @@ target_link_libraries(
 set_target_properties(
 	ymse
 	PROPERTIES
-	COMPILE_FLAGS "-ggdb -ffast-math -pipe -fvisibility-inlines-hidden -Wall"
-	COMPILE_DEFINITIONS "DEBUG;EBUG;GL_GLEXT_PROTOTYPES"
-#	COMPILE_FLAGS "-O3 -ffast-math -pipe -fvisibility-inlines-hidden"
-#	COMPILE_DEFINITIONS "NDEBUG;GL_GLEXT_PROTOTYPES"
+	COMPILE_DEFINITIONS "GL_GLEXT_PROTOTYPES"
 )
+
