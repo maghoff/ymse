@@ -1,6 +1,7 @@
 Find_Package(SDL REQUIRED)
 Find_Package(SDL_image REQUIRED)
-find_package(Boost REQUIRED)
+Find_package(Boost REQUIRED)
+Find_package(OpenGL REQUIRED)
 
 add_library(
 	ymse STATIC
@@ -16,7 +17,6 @@ add_library(
 	game.cpp
 	geometry_intersection.cpp
 	gl_box_reshaper.cpp
-#	glut_core.cpp
 	key.cpp
 	keyboard_handler.cpp
 	load_image.cpp
@@ -47,9 +47,8 @@ target_link_libraries(
 	ymse
 	${SDLIMAGE_LIBRARY}
 	${SDL_LIBRARY}
-	GL
-	GLU
-#	glut
+	${OPENGL_gl_LIBRARY}
+	${OPENGL_glu_LIBRARY}
 )
 
 set_target_properties(
