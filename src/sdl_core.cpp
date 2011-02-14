@@ -60,6 +60,12 @@ void sdl_core::init(int argc, const char *argv[]) {
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
+	#if SDL_VERSION_ATLEAST(1,3,0)
+	SDL_GL_SetSwapInterval(1);
+	#else
+	SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
+	#endif
+
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 
@@ -180,7 +186,7 @@ int sdl_core::run() {
 //	if (reshaper_p) reshaper_p->reshape(1280, 720);
 	if (reshaper_p) reshaper_p->reshape(1920, 1080);
 
-	const unsigned frame_interval = 1000/50;
+	const unsigned frame_interval = 1000/100;
 	sdl_frame_timer sft(frame_interval);
 
 	SDL_Event event;
