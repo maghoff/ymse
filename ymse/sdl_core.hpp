@@ -17,8 +17,6 @@ class sdl_core : public core {
 
 	bool running;
 
-	void set_video_mode(int w, int h);
-
 public:
 	sdl_core();
 	~sdl_core();
@@ -27,6 +25,7 @@ public:
 	void set_game_object(game*);
 	void set_reshaper_object(reshaper*);
 	void set_keyboard_handler(keyboard_handler*);
+	void set_video_mode(int w, int h, bool fullscreen);
 	int run();
 };
 

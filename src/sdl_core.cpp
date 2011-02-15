@@ -37,13 +37,16 @@ sdl_core::~sdl_core() {
 	if (inited) SDL_Quit();
 }
 
-void sdl_core::set_video_mode(int w, int h) {
-	screen = SDL_SetVideoMode(
-		w, h, 32,
+void sdl_core::set_video_mode(int w, int h, bool fullscreen) {
+	unsigned int flags =
 		SDL_OPENGL |
 		SDL_RESIZABLE |
-		0
-	);
+		0;
+
+	if (fullscreen)
+		flags |= SDL_FULLSCREEN;
+
+	screen = SDL_SetVideoMode(w, h, 32, flags);
 	CHECK(screen);
 }
 
@@ -69,8 +72,7 @@ void sdl_core::init(int argc, const char *argv[]) {
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 
-//	set_video_mode(1280, 720);
-	set_video_mode(1920, 1080);
+	set_video_mode(800, 600, false);
 
 	SDL_ShowCursor(SDL_DISABLE);
 }
@@ -222,7 +224,7 @@ int sdl_core::run() {
 			break;
 
 		case SDL_VIDEORESIZE:
-			set_video_mode(event.resize.w, event.resize.h);
+			set_video_mode(event.resize.w, event.resize.h, false);
 			if (reshaper_p) reshaper_p->reshape(event.resize.w, event.resize.h);
 			break;
 
