@@ -9,6 +9,11 @@
 #include "reshaper.hpp"
 #include "sdl_core.hpp"
 
+namespace {
+	const int default_width  = 800;
+	const int default_height = 600;
+}
+
 namespace ymse {
 
 const int YSDL_RENDERFRAME = SDL_USEREVENT;
@@ -72,7 +77,7 @@ void sdl_core::init(int argc, const char *argv[]) {
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 
-	set_video_mode(800, 600, false);
+	set_video_mode(default_width, default_height, false);
 
 	SDL_ShowCursor(SDL_DISABLE);
 }
@@ -201,8 +206,7 @@ int sdl_core::run() {
 
 	assert(game_p);
 
-//	if (reshaper_p) reshaper_p->reshape(1280, 720);
-	if (reshaper_p) reshaper_p->reshape(1920, 1080);
+	if (reshaper_p) reshaper_p->reshape(default_width, default_height);
 
 	const unsigned frame_interval = 1000/100;
 	sdl_frame_timer sft(frame_interval);
