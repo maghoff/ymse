@@ -6,6 +6,7 @@ namespace ymse {
 class game;
 class reshaper;
 class keyboard_handler;
+class mouse_handler;
 
 class core {
 public:

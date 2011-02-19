@@ -19,6 +19,7 @@ add_library(
 	gl_box_reshaper.cpp
 	key.cpp
 	keyboard_handler.cpp
+	mouse_handler.cpp
 	load_image.cpp
 	matrix.cpp
 	matrix3d.cpp

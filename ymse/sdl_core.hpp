@@ -14,6 +14,7 @@ class sdl_core : public core {
 	game* game_p;
 	reshaper* reshaper_p;
 	keyboard_handler* keyboard_handler_p;
+	mouse_handler* mouse_handler_p;
 
 	bool running;
 
@@ -25,6 +26,7 @@ public:
 	void set_game_object(game*);
 	void set_reshaper_object(reshaper*);
 	void set_keyboard_handler(keyboard_handler*);
+	void set_mouse_handler(mouse_handler*);
 	void set_video_mode(int w, int h, bool fullscreen);
 	int run();
 };

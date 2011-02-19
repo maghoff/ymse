@@ -5,6 +5,7 @@
 #include <SDL.h>
 #include "game.hpp"
 #include "keyboard_handler.hpp"
+#include "mouse_handler.hpp"
 #include "keycodes.hpp"
 #include "reshaper.hpp"
 #include "sdl_core.hpp"
@@ -34,6 +35,7 @@ sdl_core::sdl_core() :
 	game_p(0),
 	reshaper_p(0),
 	keyboard_handler_p(0),
+	mouse_handler_p(0),
 	running(true)
 {
 }
@@ -79,7 +81,7 @@ void sdl_core::init(int argc, const char *argv[]) {
 
 	set_video_mode(default_width, default_height, false);
 
-	SDL_ShowCursor(SDL_DISABLE);
+	SDL_ShowCursor(SDL_ENABLE);
 }
 
 void sdl_core::set_game_object(game* game_p_) {
@@ -92,6 +94,10 @@ void sdl_core::set_reshaper_object(reshaper* reshaper_p_) {
 
 void sdl_core::set_keyboard_handler(keyboard_handler* keyboard_handler_p_) {
 	keyboard_handler_p = keyboard_handler_p_;
+}
+
+void sdl_core::set_mouse_handler(mouse_handler* mouse_handler_p_) {
+	mouse_handler_p = mouse_handler_p_;
 }
 
 std::map<int, int> key_map = boost::assign::map_list_of<int, int>
@@ -243,6 +249,31 @@ int sdl_core::run() {
 				);
 			}
 			break;
+
+		case SDL_MOUSEMOTION:
+			if (mouse_handler_p) {
+				mouse_handler_p->mouse_motion(
+					event.motion.xrel, event.motion.yrel,
+					event.motion.x, event.motion.y
+				);
+			}
+            break;
+
+		case SDL_MOUSEBUTTONDOWN:
+			if (mouse_handler_p) {
+				mouse_handler_p->mouse_button_down(
+					event.button.button, event.button.x, event.button.y
+				);
+			}
+            break;
+
+		case SDL_MOUSEBUTTONUP:
+			if (mouse_handler_p) {
+				mouse_handler_p->mouse_button_up(
+					event.button.button, event.button.x, event.button.y
+				);
+			}
+            break;
 
 		case YSDL_RENDERFRAME:
 			sft.do_add = true;
