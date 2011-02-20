@@ -8,7 +8,7 @@ namespace matrix3d {
 
 matrix33f identity() {
 	matrix33f m(0);
-	for (int i=0; i<3; ++i) m[i][i] = 0;
+	for (int i=0; i<3; ++i) m[i][i] = 1;
 	return m;
 }
 
