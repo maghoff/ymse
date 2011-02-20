@@ -26,7 +26,26 @@ sq_matrix<Size, T> operator * (const sq_matrix<Size, T>& lhs, const sq_matrix<Si
 	return res;
 }
 
+template <int Size, typename T>
+vec<Size, T> operator * (const sq_matrix<Size, T>& lhs, const vec<Size, T>& rhs) {
+	vec<Size, T> r;
+	for (int row = 0; row < Size; ++row) {
+		T& d = r[row];
+		d = 0;
+		for (int i = 0; i < Size; ++i) {
+			d += lhs[row][i] * rhs[i];
+		}
+	}
+	return r;
+}
+
+
 template struct sq_matrix<3, float>;
 template sq_matrix<3, float> operator * (const sq_matrix<3, float>&, const sq_matrix<3, float>&);
+template vec<3, float> operator * (const sq_matrix<3, float>&, const vec<3, float>&);
+
+template struct sq_matrix<2, float>;
+template sq_matrix<2, float> operator * (const sq_matrix<2, float>&, const sq_matrix<2, float>&);
+template vec<2, float> operator * (const sq_matrix<2, float>&, const vec<2, float>&);
 
 }
