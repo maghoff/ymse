@@ -17,6 +17,7 @@ struct vec {
 
 	vec<Dim, T>& operator += (vec<Dim, T>);
 	vec<Dim, T>& operator -= (vec<Dim, T>);
+	vec<Dim, T>& operator /= (vec<Dim, T>);
 
 	vec<Dim, T>& operator *= (T);
 
@@ -26,6 +27,13 @@ struct vec {
 
 template <int Dim, typename T>
 ymse::vec<Dim, T> operator + (const ymse::vec<Dim, T>&, const ymse::vec<Dim, T>&);
+
+template <int Dim, typename T>
+ymse::vec<Dim, T> operator - (const ymse::vec<Dim, T>&, const ymse::vec<Dim, T>&);
+
+// element-wise division
+template <int Dim, typename T>
+ymse::vec<Dim, T> operator / (const ymse::vec<Dim, T>&, const ymse::vec<Dim, T>&);
 
 template <int Dim, typename T>
 ymse::vec<Dim, T> operator * (const ymse::vec<Dim, T>&, T);

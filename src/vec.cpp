@@ -36,6 +36,12 @@ vec<Dim, T>& vec<Dim, T>::operator -= (vec<Dim, T> rhs) {
 }
 
 template <int Dim, typename T>
+vec<Dim, T>& vec<Dim, T>::operator /= (vec<Dim, T> rhs) {
+	for (int i=0; i<Dim; ++i) v[i] /= rhs[i];
+	return *this;
+}
+
+template <int Dim, typename T>
 vec<Dim, T>& vec<Dim, T>::operator *= (T rhs) {
 	for (int i=0; i<Dim; ++i) v[i] *= rhs;
 	return *this;
@@ -61,6 +67,22 @@ vec<Dim, T> operator + (const vec<Dim, T>& lhs, const vec<Dim, T>& rhs) {
 }
 
 template <int Dim, typename T>
+vec<Dim, T> operator - (const vec<Dim, T>& lhs, const vec<Dim, T>& rhs) {
+	vec<Dim, T> r(lhs);
+	r -= rhs;
+	return r;
+}
+
+template <int Dim, typename T>
+vec<Dim, T> operator / (const ymse::vec<Dim, T>& lhs, const ymse::vec<Dim, T>& rhs)
+{
+	vec<Dim, T> r(lhs);
+	r /= rhs;
+	return r;
+}
+
+
+template <int Dim, typename T>
 vec<Dim, T> operator * (const vec<Dim, T>& lhs, T rhs) {
 	vec<Dim, T> r(lhs);
 	r *= rhs;
@@ -76,7 +98,9 @@ vec<Dim, T> operator * (T lhs, const vec<Dim, T>& rhs) {
 	template struct vec<dim, t>; \
 	template name operator + (const name&, const name&); \
 	template name operator * (const name&, t); \
-	template name operator * (t, const name&);
+	template name operator * (t, const name&); \
+	template name operator - (const name&, const name&); \
+	template name operator / (const name&, const name&);
 
 INSTANTIATE(vec2f, 2, float);
 INSTANTIATE(vec3f, 3, float);
