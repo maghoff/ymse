@@ -11,9 +11,13 @@ struct vec {
 	T operator[] (int n) const { return v[n]; }
 	T& operator[] (int n) { return v[n]; }
 
-	// Accessors into v[...]
-	T& x;
-	T& y;
+	T& x();
+	T& y();
+	T& z();
+
+	T x() const;
+	T y() const;
+	T z() const;
 
 	vec();
 	vec(T x, T y);

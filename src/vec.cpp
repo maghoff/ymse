@@ -5,33 +5,32 @@
 namespace ymse {
 
 template <int Dim, typename T>
-vec<Dim, T>::vec() :
-	x(v[0]),
-	y(v[1])
-{
+vec<Dim, T>::vec() {
 	assert(Dim >= 2);
 }
 
 template <int Dim, typename T>
-vec<Dim, T>::vec(T x_, T y_) :
-	x(v[0]),
-	y(v[1])
-{
+vec<Dim, T>::vec(T x_, T y_) {
 	assert(Dim == 2);
 	v[0] = x_;
 	v[1] = y_;
 }
 
 template <int Dim, typename T>
-vec<Dim, T>::vec(T x_, T y_, T z_) :
-	x(v[0]),
-	y(v[1])
-{
+vec<Dim, T>::vec(T x_, T y_, T z_) {
 	assert(Dim == 3);
 	v[0] = x_;
 	v[1] = y_;
 	v[2] = z_;
 }
+
+template <int Dim, typename T> T& vec<Dim, T>::x() { assert(Dim >= 1); return v[0]; }
+template <int Dim, typename T> T& vec<Dim, T>::y() { assert(Dim >= 2); return v[1]; }
+template <int Dim, typename T> T& vec<Dim, T>::z() { assert(Dim >= 3); return v[2]; }
+
+template <int Dim, typename T> T vec<Dim, T>::x() const { assert(Dim >= 1); return v[0]; }
+template <int Dim, typename T> T vec<Dim, T>::y() const { assert(Dim >= 2); return v[1]; }
+template <int Dim, typename T> T vec<Dim, T>::z() const { assert(Dim >= 3); return v[2]; }
 
 template <int Dim, typename T>
 vec<Dim, T>& vec<Dim, T>::operator += (vec<Dim, T> rhs) {
