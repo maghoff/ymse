@@ -5,22 +5,32 @@
 namespace ymse {
 
 template <int Dim, typename T>
-vec<Dim, T>::vec() {
+vec<Dim, T>::vec() :
+	x(v[0]),
+	y(v[1])
+{
+	assert(Dim >= 2);
 }
 
 template <int Dim, typename T>
-vec<Dim, T>::vec(T x, T y) {
+vec<Dim, T>::vec(T x_, T y_) :
+	x(v[0]),
+	y(v[1])
+{
 	assert(Dim == 2);
-	v[0] = x;
-	v[1] = y;
+	v[0] = x_;
+	v[1] = y_;
 }
 
 template <int Dim, typename T>
-vec<Dim, T>::vec(T x, T y, T z) {
+vec<Dim, T>::vec(T x_, T y_, T z_) :
+	x(v[0]),
+	y(v[1])
+{
 	assert(Dim == 3);
-	v[0] = x;
-	v[1] = y;
-	v[2] = z;
+	v[0] = x_;
+	v[1] = y_;
+	v[2] = z_;
 }
 
 template <int Dim, typename T>
