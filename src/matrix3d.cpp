@@ -16,6 +16,14 @@ matrix33f scale(double x) {
 	return m;
 }
 
+matrix33f scale(double x, double y, double z) {
+	matrix33f m(0);
+	m[0][0] = x;
+	m[1][1] = y;
+	m[2][2] = z;
+	return m;
+}
+
 matrix33f rotate_x(double th) {
 	matrix33f m(identity());
 	m[1][1] =  cos(th); m[1][2] =  sin(th);

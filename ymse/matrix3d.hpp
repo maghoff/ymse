@@ -19,6 +19,7 @@ namespace matrix3d {
 matrix33f identity();
 
 matrix33f scale(double);
+matrix33f scale(double x, double y, double z);
 
 matrix33f rotate_x(double);
 matrix33f rotate_y(double);
