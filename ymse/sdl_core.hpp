@@ -22,7 +22,7 @@ public:
 	sdl_core();
 	~sdl_core();
 
-	void init(int argc, const char *argv[]);
+	void init(int argc, char const * const argv[]);
 	void set_game_object(game*);
 	void set_reshaper_object(reshaper*);
 	void set_keyboard_handler(keyboard_handler*);

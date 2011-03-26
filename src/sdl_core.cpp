@@ -57,7 +57,7 @@ void sdl_core::set_video_mode(int w, int h, bool fullscreen) {
 	CHECK(screen);
 }
 
-void sdl_core::init(int argc, const char *argv[]) {
+void sdl_core::init(int argc, char const * const argv[]) {
 	CHECK(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != -1);
 	inited = true;
 

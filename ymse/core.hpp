@@ -13,7 +13,7 @@ public:
 	core();
 	virtual ~core();
 
-	virtual void init(int argc, const char *argv[]) = 0;
+	virtual void init(int argc, char const * const argv[]) = 0;
 
 	virtual void set_game_object(game*) = 0;
 	virtual void set_reshaper_object(reshaper*) = 0;
