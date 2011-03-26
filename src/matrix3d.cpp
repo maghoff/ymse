@@ -7,8 +7,12 @@ namespace ymse {
 namespace matrix3d {
 
 matrix33f identity() {
+	return scale(1);
+}
+
+matrix33f scale(double x) {
 	matrix33f m(0);
-	for (int i=0; i<3; ++i) m[i][i] = 1;
+	for (int i=0; i<3; ++i) m[i][i] = x;
 	return m;
 }
 
