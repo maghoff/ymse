@@ -17,6 +17,7 @@ class sdl_core : public core {
 	mouse_handler* mouse_handler_p;
 
 	bool running;
+	int return_value;
 
 public:
 	sdl_core();
@@ -29,6 +30,7 @@ public:
 	void set_mouse_handler(mouse_handler*);
 	void set_video_mode(int w, int h, bool fullscreen);
 	int run();
+	void stop(int);
 };
 
 }

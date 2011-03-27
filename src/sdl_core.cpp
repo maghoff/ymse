@@ -210,6 +210,8 @@ int sdl_core::run() {
 		);
 	}
 
+	return_value = 0;
+
 	assert(game_p);
 
 	if (reshaper_p) reshaper_p->reshape(default_width, default_height);
@@ -283,7 +285,12 @@ int sdl_core::run() {
 		}
 	}
 
-	return 0;
+	return return_value;
+}
+
+void sdl_core::stop(int r) {
+	return_value = r;
+	running = false;
 }
 
 }
