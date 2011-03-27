@@ -278,9 +278,9 @@ int sdl_core::run() {
             break;
 
 		case YSDL_RENDERFRAME:
-			sft.do_add = true;
 			game_p->render();
 			SDL_GL_SwapBuffers();
+			sft.do_add = true;
 			break;
 		}
 	}
