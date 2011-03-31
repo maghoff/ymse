@@ -9,6 +9,7 @@ namespace ymse {
 
 class bindable_keyboard_handler : public keyboard_handler {
 	typedef boost::function<void(bool)> callback;
+	typedef boost::function<void()> simple_callback;
 
 private:
 	std::map<int, callback> m;
@@ -20,6 +21,7 @@ public:
 	void key_event(int, bool) const;
 
 	void bind(int, callback);
+	void bind_pressed(int, simple_callback);
 	void unbind(int);
 };
 
