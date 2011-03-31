@@ -12,7 +12,7 @@
 
 // We will use homogenous coordinates in two dimensions. For this we need
 // 3x3-matrices and 3-vectors.
-#include <ymse/matrix2d_homogenous.hpp>
+#include <ymse/matrix.hpp>
 #include <ymse/vec.hpp>
 
 class Game : public ymse::game {
