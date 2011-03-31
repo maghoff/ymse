@@ -1,0 +1,5 @@
+a.out: main.o
+	g++ -o $@ $< -L${YMSE_PATH}/debug/src -lymse -lGL -lSDL
+
+main.o: main.cpp
+	g++ -c -o $@ $< -I${YMSE_PATH}
