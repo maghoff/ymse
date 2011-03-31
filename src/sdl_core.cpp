@@ -109,8 +109,14 @@ void sdl_core::init(int argc, char const * const argv[]) {
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 
 	set_video_mode_core(default_width, default_height, false);
+}
 
-	SDL_ShowCursor(SDL_ENABLE);
+void sdl_core::set_cursor_visible(bool show) {
+	SDL_ShowCursor(show ? SDL_ENABLE : SDL_DISABLE);
+}
+
+bool sdl_core::get_cursor_visible() const {
+	return SDL_ShowCursor(SDL_QUERY) == SDL_ENABLE;
 }
 
 void sdl_core::set_game_object(game* game_p_) {

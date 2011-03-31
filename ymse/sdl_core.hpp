@@ -35,6 +35,8 @@ public:
 	void set_keyboard_handler(keyboard_handler*);
 	void set_mouse_handler(mouse_handler*);
 	void set_video_mode(int w, int h, bool fullscreen);
+	void set_cursor_visible(bool);
+	bool get_cursor_visible() const;
 
 	bool is_fullscreen() const;
 	void set_fullscreen(bool);
