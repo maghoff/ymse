@@ -1,6 +1,7 @@
 #ifndef YMSE_SDL_CORE_HPP
 #define YMSE_SDL_CORE_HPP
 
+#include "sdl_main.h"
 #include "core.hpp"
 
 struct SDL_Surface;
