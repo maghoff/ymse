@@ -10,3 +10,6 @@ release
 them_sources.sh
 *.o
 a.out
+tutorial/05_waf/build
+tutorial/05_waf/.waf*
+tutorial/05_waf/.lock-wafbuild
