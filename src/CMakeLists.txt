@@ -3,6 +3,10 @@ Find_Package(SDL_image REQUIRED)
 Find_package(Boost REQUIRED)
 Find_package(OpenGL REQUIRED)
 
+if (APPLE)
+	set(SDLMAIN SDLMain.m)
+endif (APPLE)
+
 add_library(
 	ymse STATIC
 	gl/program.cpp
@@ -35,6 +39,7 @@ add_library(
 	sdl_core.cpp
 	signaling_opposite_keys.cpp
 	vec.cpp
+	${SDLMAIN}
 )
 
 include_directories(
