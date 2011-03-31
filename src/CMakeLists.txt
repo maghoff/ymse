@@ -14,6 +14,7 @@ add_library(
 	core.cpp
 	core_factory.cpp
 	fileutil.cpp
+	fixed_aspect_reshaper.cpp
 	game.cpp
 	geometry_intersection.cpp
 	gl_box_reshaper.cpp
