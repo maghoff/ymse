@@ -5,6 +5,6 @@ Doxyfile
 tags
 debug
 release
-
-*.user
+*.user*
 *.pyc
+them_sources.sh
