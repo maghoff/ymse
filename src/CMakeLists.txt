@@ -25,6 +25,7 @@ add_library(
 	load_image.cpp
 	matrix.cpp
 	matrix3d.cpp
+	matrix2d_homogenous.cpp
 	opposite_keys.cpp
 	opposite_keys_listener.cpp
 	pixels_per_unit_listener.cpp
