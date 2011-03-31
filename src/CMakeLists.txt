@@ -11,6 +11,7 @@ add_library(
 	sdl/img_load.cpp
 	sdl/surface.cpp
 	bindable_keyboard_handler.cpp
+	box_reshaper.cpp
 	core.cpp
 	core_factory.cpp
 	fileutil.cpp
