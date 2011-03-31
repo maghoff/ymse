@@ -226,8 +226,10 @@ int sdl_core::run() {
 		CHECK(SDL_WaitEvent(&event));
 
 		while (ticks < SDL_GetTicks()) {
-			++ticks;
-			if (ticks % 10 == 0) game_p->tick();
+			unsigned now = SDL_GetTicks();
+			assert(now > ticks);
+			game_p->tick(now - ticks);
+			ticks = now;
 		}
 
 		switch (event.type) {
