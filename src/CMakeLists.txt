@@ -23,7 +23,6 @@ add_library(
 	game.cpp
 	geometry_intersection.cpp
 	gl_box_reshaper.cpp
-	glviewport_reshaper.cpp
 	key.cpp
 	keyboard_handler.cpp
 	mouse_handler.cpp
