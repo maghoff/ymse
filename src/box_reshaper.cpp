@@ -5,7 +5,10 @@
 
 namespace ymse {
 
-box_reshaper::box_reshaper() { }
+box_reshaper::box_reshaper() {
+	set_box(-1, -1, 1, 1);
+}
+
 box_reshaper::~box_reshaper() { }
 
 void box_reshaper::calculate_transformation() {
