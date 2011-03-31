@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <boost/assign.hpp>
 #include <SDL.h>
+#include "gl.h"
 #include "game.hpp"
 #include "keyboard_handler.hpp"
 #include "mouse_handler.hpp"
@@ -59,6 +60,8 @@ void sdl_core::set_video_mode_core(int w, int h, bool fullscreen) {
 
 	screen = SDL_SetVideoMode(w, h, 32, flags);
 	CHECK(screen);
+
+	glViewport(0, 0, screen->w, screen->h);
 
 	is_fs = fullscreen;
 }
