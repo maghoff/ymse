@@ -19,6 +19,12 @@ class sdl_core : public core {
 	bool running;
 	int return_value;
 
+	int desktop_w, desktop_h;
+	int windowed_w, windowed_h;
+	bool is_fs;
+
+	void set_video_mode_core(int w, int h, bool fullscreen);
+
 public:
 	sdl_core();
 	~sdl_core();
@@ -29,6 +35,11 @@ public:
 	void set_keyboard_handler(keyboard_handler*);
 	void set_mouse_handler(mouse_handler*);
 	void set_video_mode(int w, int h, bool fullscreen);
+
+	bool is_fullscreen() const;
+	void set_fullscreen(bool);
+	void toggle_fullscreen();
+
 	int run();
 	void stop(int);
 };

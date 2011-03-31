@@ -44,22 +44,51 @@ sdl_core::~sdl_core() {
 	if (inited) SDL_Quit();
 }
 
-void sdl_core::set_video_mode(int w, int h, bool fullscreen) {
-	unsigned int flags =
-		SDL_OPENGL |
-		SDL_RESIZABLE |
-		0;
+void sdl_core::set_video_mode_core(int w, int h, bool fullscreen) {
+	unsigned int flags = SDL_OPENGL;
 
-	if (fullscreen)
+	if (fullscreen) {
+		if (!is_fs) {
+			windowed_w = screen->w;
+			windowed_h = screen->h;
+		}
 		flags |= SDL_FULLSCREEN;
+	} else {
+		flags |= SDL_RESIZABLE;
+	}
 
 	screen = SDL_SetVideoMode(w, h, 32, flags);
 	CHECK(screen);
+
+	is_fs = fullscreen;
+}
+
+void sdl_core::set_video_mode(int w, int h, bool fullscreen) {
+	set_video_mode_core(w, h, fullscreen);
+	if (reshaper_p) reshaper_p->reshape(screen->w, screen->h);
+}
+
+bool sdl_core::is_fullscreen() const {
+	return is_fs;
+}
+
+void sdl_core::set_fullscreen(bool desired) {
+	if (desired != is_fs) toggle_fullscreen();
+}
+
+void sdl_core::toggle_fullscreen() {
+	if (!is_fs) set_video_mode(desktop_w, desktop_h, true);
+	else set_video_mode(windowed_w, windowed_h, false);
 }
 
 void sdl_core::init(int argc, char const * const argv[]) {
 	CHECK(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != -1);
 	inited = true;
+
+	const SDL_VideoInfo* vinf = SDL_GetVideoInfo();
+	desktop_w = vinf->current_w;
+	desktop_h = vinf->current_h;
+	is_fs = false;
 
 	SDL_EnableKeyRepeat(0, 0); //< Just disable it.
 
@@ -79,7 +108,7 @@ void sdl_core::init(int argc, char const * const argv[]) {
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 
-	set_video_mode(default_width, default_height, false);
+	set_video_mode_core(default_width, default_height, false);
 
 	SDL_ShowCursor(SDL_ENABLE);
 }
@@ -214,7 +243,7 @@ int sdl_core::run() {
 
 	assert(game_p);
 
-	if (reshaper_p) reshaper_p->reshape(default_width, default_height);
+	if (reshaper_p) reshaper_p->reshape(screen->w, screen->h);
 
 	const unsigned frame_interval = 1000/100;
 	sdl_frame_timer sft(frame_interval);
@@ -239,7 +268,6 @@ int sdl_core::run() {
 
 		case SDL_VIDEORESIZE:
 			set_video_mode(event.resize.w, event.resize.h, false);
-			if (reshaper_p) reshaper_p->reshape(event.resize.w, event.resize.h);
 			break;
 
 		case SDL_KEYDOWN:
