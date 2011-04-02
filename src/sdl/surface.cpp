@@ -1,3 +1,5 @@
+#include <iostream>
+#include <cassert>
 #include "gl.h"
 #include "glu.h"
 #include <SDL.h>
@@ -23,15 +25,31 @@ surface& surface::operator = (const surface& rhs) {
 }
 
 void surface::copy_to(gl::texture& t) const {
-	SDL_PixelFormat *format = s->format;
+	SDL_PixelFormat desiredFormat;
+	desiredFormat.BitsPerPixel = 32;
+	desiredFormat.BytesPerPixel = 4;
+	desiredFormat.Amask = 0xFF000000;
+	desiredFormat.Bmask = 0x00FF0000;
+	desiredFormat.Gmask = 0x0000FF00;
+	desiredFormat.Rmask = 0x000000FF;
+	desiredFormat.Ashift = 24;
+	desiredFormat.Bshift = 16;
+	desiredFormat.Gshift =  8;
+	desiredFormat.Rshift =  0;
+	desiredFormat.Aloss = 0;
+	desiredFormat.Rloss = 0;
+	desiredFormat.Gloss = 0;
+	desiredFormat.Bloss = 0;
+	desiredFormat.alpha = 0xFF;
+	desiredFormat.colorkey = 0;
+	desiredFormat.palette = 0;
 
-	int bpp = format->Amask ? 4 : 3;
-	int gl_format = format->Amask ? GL_RGBA : GL_RGB;
+	surface transformed(SDL_ConvertSurface(s, &desiredFormat, SDL_SWSURFACE));
 
 	glBindTexture(GL_TEXTURE_2D, t.get_id());
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
-	gluBuild2DMipmaps(GL_TEXTURE_2D, bpp, s->w, s->h, gl_format, GL_UNSIGNED_BYTE, s->pixels);
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, transformed->w, transformed->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, transformed->pixels);
+	glGenerateMipmap(GL_TEXTURE_2D);
 }
 
 }}
