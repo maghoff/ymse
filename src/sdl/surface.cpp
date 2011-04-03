@@ -1,5 +1,3 @@
-#include <iostream>
-#include <cassert>
 #include "gl.h"
 #include "glu.h"
 #include <SDL.h>
