@@ -12,7 +12,7 @@ class box_reshaper : public reshaper {
 	double x2, y2;
 
 	double ppu;
-	matrix33f t;
+	matrix33f t, t_inv;
 
 	void calculate_transformation();
 
@@ -25,6 +25,7 @@ public:
 
 	double get_pixels_per_unit() const;
 	const matrix33f& get_transformation() const;
+	const matrix33f& get_inverse_transformation() const;
 };
 
 } // namespace ymse
