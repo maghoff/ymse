@@ -90,7 +90,6 @@ vec<Dim, T> operator / (const ymse::vec<Dim, T>& lhs, const ymse::vec<Dim, T>& r
 	return r;
 }
 
-
 template <int Dim, typename T>
 vec<Dim, T> operator * (const vec<Dim, T>& lhs, T rhs) {
 	vec<Dim, T> r(lhs);
@@ -103,16 +102,31 @@ vec<Dim, T> operator * (T lhs, const vec<Dim, T>& rhs) {
 	return rhs * lhs;
 }
 
+template <int Dim, typename T>
+bool operator == (const ymse::vec<Dim, T>& lhs, const ymse::vec<Dim, T>& rhs) {
+	bool equals = true;
+	for (int i=0; i<Dim; ++i) equals &= (lhs[i] == rhs[i]);
+	return equals;
+}
+
+template <int Dim, typename T>
+bool operator != (const ymse::vec<Dim, T>& lhs, const ymse::vec<Dim, T>& rhs) {
+	return !(lhs == rhs);
+}
+
 #define INSTANTIATE(name, dim, t) \
 	template struct vec<dim, t>; \
 	template name operator + (const name&, const name&); \
 	template name operator * (const name&, t); \
 	template name operator * (t, const name&); \
 	template name operator - (const name&, const name&); \
-	template name operator / (const name&, const name&);
+	template name operator / (const name&, const name&); \
+	template bool operator == (const name&, const name&); \
+	template bool operator != (const name&, const name&);
 
 INSTANTIATE(vec2f, 2, float);
 INSTANTIATE(vec3f, 3, float);
+INSTANTIATE(vec2d, 2, double);
 INSTANTIATE(vec2i, 2, int);
 
 }

@@ -49,13 +49,23 @@ ymse::vec<Dim, T> operator * (const ymse::vec<Dim, T>&, T);
 template <int Dim, typename T>
 ymse::vec<Dim, T> operator * (T, const ymse::vec<Dim, T>&);
 
+template <int Dim, typename T>
+bool operator == (const ymse::vec<Dim, T>&, const ymse::vec<Dim, T>&);
+
+template <int Dim, typename T>
+bool operator != (const ymse::vec<Dim, T>&, const ymse::vec<Dim, T>&);
+
 extern template struct vec<2, float>;
 extern template struct vec<3, float>;
+
+extern template struct vec<2, double>;
 
 extern template struct vec<2, int>;
 
 typedef vec<2, float> vec2f;
 typedef vec<3, float> vec3f;
+
+typedef vec<2, double> vec2d;
 
 typedef vec<2, int> vec2i;
 
