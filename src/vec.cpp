@@ -24,6 +24,15 @@ vec<Dim, T>::vec(T x_, T y_, T z_) {
 	v[2] = z_;
 }
 
+template <int Dim, typename T>
+vec<Dim, T>::vec(T x_, T y_, T z_, T w_) {
+	assert(Dim == 4);
+	v[0] = x_;
+	v[1] = y_;
+	v[2] = z_;
+	v[3] = w_;
+}
+
 template <int Dim, typename T> T& vec<Dim, T>::x() { assert(Dim >= 1); return v[0]; }
 template <int Dim, typename T> T& vec<Dim, T>::y() { assert(Dim >= 2); return v[1]; }
 template <int Dim, typename T> T& vec<Dim, T>::z() { assert(Dim >= 3); return v[2]; }
@@ -136,6 +145,7 @@ bool operator < (const ymse::vec<Dim, T>& lhs, const ymse::vec<Dim, T>& rhs) {
 
 INSTANTIATE(vec2f, 2, float);
 INSTANTIATE(vec3f, 3, float);
+INSTANTIATE(vec4f, 4, float);
 INSTANTIATE(vec2d, 2, double);
 INSTANTIATE(vec2i, 2, int);
 

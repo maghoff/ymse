@@ -22,6 +22,7 @@ struct vec {
 	vec();
 	vec(T x, T y);
 	vec(T x, T y, T z);
+	vec(T x, T y, T z, T w);
 
 	vec<Dim, T>& operator += (vec<Dim, T>);
 	vec<Dim, T>& operator -= (vec<Dim, T>);
@@ -59,15 +60,9 @@ bool operator != (const ymse::vec<Dim, T>&, const ymse::vec<Dim, T>&);
 template <int Dim, typename T>
 bool operator < (const ymse::vec<Dim, T>&, const ymse::vec<Dim, T>&);
 
-extern template struct vec<2, float>;
-extern template struct vec<3, float>;
-
-extern template struct vec<2, double>;
-
-extern template struct vec<2, int>;
-
 typedef vec<2, float> vec2f;
 typedef vec<3, float> vec3f;
+typedef vec<4, float> vec4f;
 
 typedef vec<2, double> vec2d;
 
