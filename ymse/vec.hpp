@@ -55,6 +55,10 @@ bool operator == (const ymse::vec<Dim, T>&, const ymse::vec<Dim, T>&);
 template <int Dim, typename T>
 bool operator != (const ymse::vec<Dim, T>&, const ymse::vec<Dim, T>&);
 
+// Lexicographic order
+template <int Dim, typename T>
+bool operator < (const ymse::vec<Dim, T>&, const ymse::vec<Dim, T>&);
+
 extern template struct vec<2, float>;
 extern template struct vec<3, float>;
 

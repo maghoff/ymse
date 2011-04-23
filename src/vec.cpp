@@ -114,6 +114,15 @@ bool operator != (const ymse::vec<Dim, T>& lhs, const ymse::vec<Dim, T>& rhs) {
 	return !(lhs == rhs);
 }
 
+template <int Dim, typename T>
+bool operator < (const ymse::vec<Dim, T>& lhs, const ymse::vec<Dim, T>& rhs) {
+	for (int i=0; i<Dim; ++i) {
+		if (lhs[i] < rhs[i]) return true;
+		if (rhs[i] < lhs[i]) return false;
+	}
+	return false;
+}
+
 #define INSTANTIATE(name, dim, t) \
 	template struct vec<dim, t>; \
 	template name operator + (const name&, const name&); \
@@ -122,7 +131,8 @@ bool operator != (const ymse::vec<Dim, T>& lhs, const ymse::vec<Dim, T>& rhs) {
 	template name operator - (const name&, const name&); \
 	template name operator / (const name&, const name&); \
 	template bool operator == (const name&, const name&); \
-	template bool operator != (const name&, const name&);
+	template bool operator != (const name&, const name&); \
+	template bool operator < (const name&, const name&);
 
 INSTANTIATE(vec2f, 2, float);
 INSTANTIATE(vec3f, 3, float);
