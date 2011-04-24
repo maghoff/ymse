@@ -25,6 +25,9 @@ public:
 	template <typename T>
 	void set_uniform(const std::string& name, T);
 
+	template <typename T>
+	void set_uniform(const std::string& name, T, T, T, T);
+
 	unsigned get_id();
 };
 

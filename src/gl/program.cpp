@@ -30,6 +30,11 @@ void program::set_uniform(const std::string& name, int i) {
 	glUniform1i(glGetUniformLocation(id, name.c_str()), i);
 }
 
+template<>
+void program::set_uniform(const std::string& name, float x, float y, float z, float w) {
+	glUniform4f(glGetUniformLocation(id, name.c_str()), x, y, z, w);
+}
+
 unsigned program::get_id() {
 	return id;
 }
