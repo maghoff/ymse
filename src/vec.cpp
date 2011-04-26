@@ -12,25 +12,25 @@ vec<Dim, T>::vec() {
 template <int Dim, typename T>
 vec<Dim, T>::vec(T x_, T y_) {
 	assert(Dim == 2);
-	v[0] = x_;
-	v[1] = y_;
+	if (Dim > 0) v[0] = x_;
+	if (Dim > 1) v[1] = y_;
 }
 
 template <int Dim, typename T>
 vec<Dim, T>::vec(T x_, T y_, T z_) {
 	assert(Dim == 3);
-	v[0] = x_;
-	v[1] = y_;
-	v[2] = z_;
+	if (Dim > 0) v[0] = x_;
+	if (Dim > 1) v[1] = y_;
+	if (Dim > 2) v[2] = z_;
 }
 
 template <int Dim, typename T>
 vec<Dim, T>::vec(T x_, T y_, T z_, T w_) {
 	assert(Dim == 4);
-	v[0] = x_;
-	v[1] = y_;
-	v[2] = z_;
-	v[3] = w_;
+	if (Dim > 0) v[0] = x_;
+	if (Dim > 1) v[1] = y_;
+	if (Dim > 2) v[2] = z_;
+	if (Dim > 3) v[3] = w_;
 }
 
 template <int Dim, typename T> T& vec<Dim, T>::x() { assert(Dim >= 1); return v[0]; }
