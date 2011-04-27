@@ -5,6 +5,10 @@
 #define GL_GLEXT_PROTOTYPES
 #endif
 
+#define GLEW_STATIC
+#include <GL/glew.h>
+
+
 #ifdef __MACH__
 
 #include <OpenGL/gl.h>
