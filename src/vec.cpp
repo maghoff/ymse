@@ -70,6 +70,11 @@ T vec<Dim, T>::length() const {
 	return sqrt(square_length());
 }
 
+template <>
+int vec<2, int>::length() const {
+	return sqrt((double)square_length());
+}
+
 template <int Dim, typename T>
 T vec<Dim, T>::square_length() const {
 	T acc(0);
