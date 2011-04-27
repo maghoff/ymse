@@ -14,12 +14,23 @@ class Exists:
 BOOST = {
 	"name": "boost",
 	"uri": "http://downloads.sourceforge.net/project/boost/boost/1.46.1/boost_1_46_1.zip",
-	"target_path": "downloads",
+	"target_path": "",
 	"is_installed": Exists("boost_1_46_1"),
-	"includes": "boost_1_46_1"
+	"includes": "boost_1_46_1",
 }
 
-PACKAGES = [ BOOST ]
+GLEW = {
+	"name": "glew",
+	"uri": "https://sourceforge.net/projects/glew/files/glew/1.5.8/glew-1.5.8.zip/download",
+	"target_path": "",
+	"is_installed": Exists("glew-1.5.8"),
+	"includes": "glew-1.5.8/include",
+}
+
+PACKAGES = [
+	BOOST,
+	GLEW,
+]
 
 
 def extract_uri(uri, target_path, verbosity=1):
@@ -35,7 +46,7 @@ def extract_uri(uri, target_path, verbosity=1):
 
 
 def do_import(verbosity=1):
-	basepath = os.path.dirname(__file__)
+	basepath = os.path.join(os.path.dirname(__file__), "downloads")
 
 	for p in PACKAGES:
 		installpath = os.path.join(basepath, p["target_path"])
@@ -48,7 +59,7 @@ def do_import(verbosity=1):
 
 
 def configure(debug_env, release_env):
-	basepath = os.path.abspath(os.path.dirname(__file__))
+	basepath = os.path.join(os.path.abspath(os.path.dirname(__file__)), "downloads")
 
 	for package in PACKAGES:
 		includes_property_name = 'INCLUDES_%s' % package['name']
