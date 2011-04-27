@@ -37,6 +37,6 @@ def build(bld):
 	obj = bld.stlib(
 		source=sources,
 		target='ymse',
-		use=['GL', 'boost'],
+		use=['GL', 'glew', 'boost', 'SDL_image', 'SDL'],
 		includes=['../ymse'],
 	)

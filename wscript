@@ -5,6 +5,12 @@
 def options(opt):
 	opt.load('compiler_cxx')
 
+	opt.add_option('--sdl-includes', dest='sdl_includes', default=None, action='store', help='The path that contains SDL.h')
+	opt.add_option('--sdl-lib', dest='sdl_lib', default=None, action='store', help='The SDL library')
+
+	opt.add_option('--sdl-image-includes', dest='sdl_image_includes', default=None, action='store', help='The path that contains SDL_image.h')
+	opt.add_option('--sdl-image-lib', dest='sdl_image_lib', default=None, action='store', help='The SDL_image library')
+
 
 def configure(conf):
 	import sys, external
@@ -23,6 +29,16 @@ def configure(conf):
 	cc.warnings_as_errors(conf.env)
 
 	core_env = conf.env.derive()
+
+	from Options import options as opt
+
+	if opt.sdl_includes != None:
+		core_env.INCLUDES_SDL = [ opt.sdl_includes ]
+	core_env.LIBS_SDL = [ opt.sdl_lib or 'SDL' ]
+
+	if opt.sdl_image_includes != None:
+		core_env.INCLUDES_SDL_image = [ opt.sdl_image_includes ]
+	core_env.LIBS_SDL_image = [ opt.sdl_image_lib or 'SDL_image' ]
 
 	debug_env = core_env.derive()
 	cc.debug_mode(debug_env)
