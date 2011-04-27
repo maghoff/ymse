@@ -1,6 +1,7 @@
 #include <cassert>
 #include <map>
 #include <stdexcept>
+#include <sstream>
 #include <boost/assign.hpp>
 #include <SDL.h>
 #include "gl.h"
@@ -26,7 +27,11 @@ public:
 };
 
 void check(bool ok, const std::string& f) {
-	if (!ok) throw sdl_error(f + ": " + SDL_GetError());
+	if (!ok) {
+		std::ostringstream ss;
+		ss << f << ": " << SDL_GetError();
+		throw sdl_error(ss.str());
+	}
 }
 
 #define CHECK(f) check(f, #f);
