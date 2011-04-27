@@ -19,9 +19,7 @@ struct rect {
 	value_type height() const { return y2-y1; }
 };
 
-extern template struct rect<float>;
 typedef rect<float> rectf;
-
 
 template <typename T>
 rect<T> bounding_box(rect<T>, rect<T>);
