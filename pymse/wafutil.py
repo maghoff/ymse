@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-def msvc_initial_setup(env, msvc_versions=[(9, 0)], msvc_targets=['x86']):
+def msvc_initial_setup(env, msvc_versions=[(10, 0)], msvc_targets=['x86']):
 	env['MSVC_VERSIONS'] = ['msvc %i.%i' % x for x in msvc_versions]
 	env['MSVC_TARGETS'] = msvc_targets
 
@@ -105,6 +105,7 @@ class gcc_configurator:
 class msvc_configurator:
 	@staticmethod
 	def sane_default(env):
+		env.append_unique('CXXFLAGS', '/EHsc') # Enable Exceptions
 		env.append_unique('CXXFLAGS', '/GR') # Enable RTTI
 		env.append_unique('CXXFLAGS', '/GS') # Buffer Security Check
 
