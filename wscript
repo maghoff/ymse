@@ -4,6 +4,7 @@
 
 def options(opt):
 	opt.load('compiler_cxx')
+	opt.load('compiler_c')
 
 	opt.add_option('--sdl-includes', dest='sdl_includes', default=None, action='store', help='The path that contains SDL.h')
 	opt.add_option('--sdl-lib', dest='sdl_lib', default=None, action='store', help='The SDL library')
@@ -21,6 +22,7 @@ def configure(conf):
 	wafutil.msvc_initial_setup(conf.env)
 
 	conf.load('compiler_cxx')
+	conf.load('compiler_c')
 
 	cc = wafutil.get_compiler_configurator(conf)
 

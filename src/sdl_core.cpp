@@ -117,6 +117,9 @@ void sdl_core::init(int argc, char const * const argv[]) {
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 
 	set_video_mode_core(default_width, default_height, false);
+
+	GLenum err = glewInit();
+	assert(err == GLEW_OK);
 }
 
 void sdl_core::set_cursor_visible(bool show) {
