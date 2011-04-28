@@ -10,8 +10,8 @@ def configure_ymse(debug_env, release_env):
 
 	release_env.INCLUDES_ymse = debug_env.INCLUDES_ymse = [YMSE_PATH]
 	release_env.LIB_ymse = debug_env.LIB_ymse = ['ymse']
-	debug_env.LIBPATH_ymse = [os.path.join(YMSE_PATH, 'debug/src')]
-	release_env.LIBPATH_ymse = [os.path.join(YMSE_PATH, 'release/src')]
+	debug_env.LIBPATH_ymse = [os.path.join(YMSE_PATH, 'build/debug/src')]
+	release_env.LIBPATH_ymse = [os.path.join(YMSE_PATH, 'build/release/src')]
 
 	if platform.system() == 'Darwin':
 		frameworks = ['OpenGL', 'SDL', 'Cocoa']
