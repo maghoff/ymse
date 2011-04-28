@@ -15,5 +15,6 @@ tutorial/05_waf/.waf*
 tutorial/05_waf/.lock-wafbuild
 external/downloads
 waf-*
+.waf-*
 build
 .lock-wafbuild
