@@ -18,3 +18,8 @@ waf-*
 .waf-*
 build
 .lock-wafbuild
+.*.kate-swp
+ymse.config
+ymse.creator
+ymse.files
+ymse.includes
