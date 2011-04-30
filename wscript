@@ -24,6 +24,9 @@ def configure(conf):
 	conf.load('compiler_cxx')
 	conf.load('compiler_c')
 
+	conf.check_cfg(package='sdl', uselib_store='SDL', args=['--cflags', '--libs'])
+	conf.check_cfg(package='SDL_image', uselib_store='SDL_image', args=['--cflags', '--libs'])
+
 	cc = wafutil.get_compiler_configurator(conf)
 
 	cc.sane_default(conf.env)
@@ -36,11 +39,13 @@ def configure(conf):
 
 	if opt.sdl_includes != None:
 		core_env.INCLUDES_SDL = [ opt.sdl_includes ]
-	core_env.LIBS_SDL = [ opt.sdl_lib or 'SDL' ]
+	if opt.sdl_lib != None:
+		core_env.LIBS_SDL = [ opt.sdl_lib ]
 
 	if opt.sdl_image_includes != None:
 		core_env.INCLUDES_SDL_image = [ opt.sdl_image_includes ]
-	core_env.LIBS_SDL_image = [ opt.sdl_image_lib or 'SDL_image' ]
+	if opt.sdl_image_lib != None:
+		core_env.LIBS_SDL_image = [ opt.sdl_image_lib ]
 
 	debug_env = core_env.derive()
 	cc.debug_mode(debug_env)
