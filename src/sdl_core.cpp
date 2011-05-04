@@ -119,7 +119,11 @@ void sdl_core::init(int argc, char const * const argv[]) {
 	set_video_mode_core(default_width, default_height, false);
 
 	GLenum err = glewInit();
-	assert(err == GLEW_OK);
+	if (err != GLEW_OK) {
+		std::stringstream ss;
+		ss << "GLEW init failed: " << (char*)glewGetErrorString(err) << std::endl;
+		throw std::runtime_error(ss.str());
+	}
 }
 
 void sdl_core::set_cursor_visible(bool show) {
