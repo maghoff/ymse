@@ -6,22 +6,44 @@ def msvc_initial_setup(env, msvc_versions=[(10, 0)], msvc_targets=['x86']):
 
 def configure_ymse(debug_env, release_env):
 	import os, platform
+
+	# waf names static libraries differently on windows
+	lib_name_pattern = '%s'
+	if platform.system() == 'Windows': lib_name_pattern = 'lib%s'
+
 	YMSE_PATH = os.environ['YMSE_PATH']
 
 	release_env.INCLUDES_ymse = debug_env.INCLUDES_ymse = [YMSE_PATH]
-	release_env.LIB_ymse = debug_env.LIB_ymse = ['ymse']
-	debug_env.LIBPATH_ymse = [os.path.join(YMSE_PATH, 'build/debug/src')]
-	release_env.LIBPATH_ymse = [os.path.join(YMSE_PATH, 'build/release/src')]
+	release_env.LIB_ymse = debug_env.LIB_ymse = [lib_name_pattern % 'ymse']
+	debug_env.LIBPATH_ymse = [
+		os.path.join(YMSE_PATH, 'build/debug/src'),
+		os.path.join(YMSE_PATH, 'build/debug/external'),
+	]
+	release_env.LIBPATH_ymse = [
+		os.path.join(YMSE_PATH, 'build/release/src'),
+		os.path.join(YMSE_PATH, 'build/release/external'),
+	]
 
 	if platform.system() == 'Darwin':
 		frameworks = ['OpenGL', 'SDL', 'Cocoa']
 		flags = sum((['-framework', x] for x in frameworks), [])
 		release_env.LINKFLAGS_ymse = flags
 		debug_env.LINKFLAGS_ymse = flags
-	else:
+	elif platform.system() == 'Linux':
 		libs = ['GL', 'SDL']
 		release_env.LIB_ymse.extend(libs)
 		debug_env.LIB_ymse.extend(libs)
+	elif platform.system() == 'Windows':
+		libs = ['opengl32']
+		release_env.LIB_ymse.extend(libs)
+		debug_env.LIB_ymse.extend(libs)
+
+	import imp
+	basepath = os.path.join(os.path.dirname(__file__), "..")
+	mod = imp.find_module('external', [basepath])
+	external = imp.load_module('_avoid_name_collision_external', *mod)
+	if mod[0] != None: mod[0].close()
+	external.configure(debug_env, release_env)
 
 def do_some_configuration(conf):
 	"""Setup debug and build variants with some reasonable compiler flags.
@@ -105,12 +127,20 @@ class gcc_configurator:
 class msvc_configurator:
 	@staticmethod
 	def sane_default(env):
+		env.append_unique('CXXFLAGS', '/FC') # Full path for error messages
 		env.append_unique('CXXFLAGS', '/EHsc') # Enable Exceptions
 		env.append_unique('CXXFLAGS', '/GR') # Enable RTTI
 		env.append_unique('CXXFLAGS', '/GS') # Buffer Security Check
+		env.append_unique('DEFINES', '_USE_MATH_DEFINES') # Enable standard behaviour for math.h (causes M_PI to be defined)
+		env.append_unique('DEFINES', '_SCL_SECURE_NO_WARNINGS') # Disable warnings for secure iterators, to avoid compiler specific code
+		env.append_unique('DEFINES', 'BOOST_ALL_NO_LIB')
+		env.append_unique('LINKFLAGS', '/SUBSYSTEM:WINDOWS')
+		#env.STLIB_ST = '%s.lib'
+		#env.SHLIB_ST = '%s.lib'
 
 	@staticmethod
 	def debug_mode(env):
+		env.append_unique('CXXFLAGS', '/Z7') # Debugging information
 		env.append_unique('CXXFLAGS', '/MDd')
 		env.append_unique('CXXFLAGS', '/Od')
 		env.append_unique('CXXFLAGS', '/RTC1')
