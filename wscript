@@ -25,7 +25,7 @@ def configure(conf):
 
 	cc.sane_default(conf.env)
 	cc.many_warnings(conf.env)
-	cc.warnings_as_errors(conf.env)
+	#cc.warnings_as_errors(conf.env)
 
 	core_env = conf.env.derive()
 
